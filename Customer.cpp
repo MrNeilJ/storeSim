@@ -48,7 +48,7 @@ std::vector<std::string> Customer::getCart() {
  * cart
 **************************************************************/
 void Customer::addProductToCart(std::string item) {
-    cart.push_back(item.idCode);
+    cart.push_back(item);
 }
 
 /**************************************************************
