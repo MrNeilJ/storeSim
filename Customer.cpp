@@ -19,7 +19,9 @@
  * customer is a premium member
 **************************************************************/
 Customer::Customer(std::string n, std::string a, bool pm) {
-
+    name            = n;
+    accountID       = a;
+    premiumMember   = pm;
 }
 
 /**************************************************************
@@ -28,7 +30,7 @@ Customer::Customer(std::string n, std::string a, bool pm) {
  * member
 **************************************************************/
 std::string Customer::getAccountID() {
-    return std::string();
+    return accountID;
 }
 
 /**************************************************************
@@ -37,7 +39,7 @@ std::string Customer::getAccountID() {
  * member
 **************************************************************/
 std::vector<std::string> Customer::getCart() {
-    return std::vector<std::string>();
+    return cart;
 }
 
 /**************************************************************
@@ -45,8 +47,8 @@ std::vector<std::string> Customer::getCart() {
  * Description: adds the product ID code to the Customer's
  * cart
 **************************************************************/
-void Customer::addProductToCart(std::string) {
-
+void Customer::addProductToCart(std::string item) {
+    cart.push_back(item.idCode);
 }
 
 /**************************************************************
@@ -55,7 +57,16 @@ void Customer::addProductToCart(std::string) {
  * member
 **************************************************************/
 bool Customer::isPremiumMember() {
-    return false;
+    // Check to see if the user is a premium member, if so return true.
+    if (premiumMember)
+    {
+        return true;
+    }
+    // Else return false
+    else
+    {
+        return false;
+    }
 }
 
 /**************************************************************
@@ -63,5 +74,5 @@ bool Customer::isPremiumMember() {
  * Description: empties the Customer's cart
 **************************************************************/
 void Customer::emptyCart() {
-
+    cart.empty();
 }

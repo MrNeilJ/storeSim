@@ -9,6 +9,7 @@
  * the status of the game to see if there is a winner or a
  * draw.
 **************************************************************/
+#include "Store.hpp"
 
 #include <iostream>
 

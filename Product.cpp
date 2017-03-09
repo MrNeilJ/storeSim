@@ -20,6 +20,11 @@
  * and quantity available
 **************************************************************/
 Product::Product(std::string id, std::string t, std::string d, double p, int qa) {
+    idCode              = id;
+    title               = t;
+    description         = d;
+    price               = p;
+    quantityAvailable   = qa;
 
 }
 
@@ -29,7 +34,7 @@ Product::Product(std::string id, std::string t, std::string d, double p, int qa)
  * member
 **************************************************************/
 std::string Product::getIdCode() {
-    return std::string();
+    return idCode;
 }
 
 /**************************************************************
@@ -38,7 +43,7 @@ std::string Product::getIdCode() {
  * member
 **************************************************************/
 std::string Product::getTitle() {
-    return std::string();
+    return title;
 }
 
 /**************************************************************
@@ -47,7 +52,7 @@ std::string Product::getTitle() {
  * member
 **************************************************************/
 std::string Product::getDescription() {
-    return std::string();
+    return description;
 }
 
 /**************************************************************
@@ -56,7 +61,7 @@ std::string Product::getDescription() {
  * member
 **************************************************************/
 double Product::getPrice() {
-    return 0;
+    return price;
 }
 
 /**************************************************************
@@ -65,7 +70,7 @@ double Product::getPrice() {
  * member
 **************************************************************/
 int Product::getQuantityAvailable() {
-    return 0;
+    return quantityAvailable;
 }
 
 /**************************************************************
@@ -73,5 +78,5 @@ int Product::getQuantityAvailable() {
  * Description: decreases the quantity available by one
 **************************************************************/
 void Product::decreaseQuantity() {
-
+    quantityAvailable --;
 }

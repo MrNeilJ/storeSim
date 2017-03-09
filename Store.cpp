@@ -17,7 +17,7 @@
  * Description: adds a product to the inventory
 **************************************************************/
 void Store::addProduct(Product *p) {
-
+    inventory.push_back(p);
 }
 
 /**************************************************************
@@ -25,7 +25,7 @@ void Store::addProduct(Product *p) {
  * Description: adds a customer to the members
 **************************************************************/
 void Store::addMember(Customer *c) {
-
+    members.push_back(c);
 }
 
 /**************************************************************
@@ -33,8 +33,14 @@ void Store::addMember(Customer *c) {
  * Description: returns pointer to product with matching ID.
  * Returns NULL if no matching ID is found.
 **************************************************************/
-Product *Store::getProductFromID(std::string) {
-    return nullptr;
+Product *Store::getProductFromID(std::string item) {
+    for(int i = 0; i < inventory.size(); i++)
+    {
+        if (item == inventory[i]->getIdCode())
+        {
+            return *(inventory[i]);
+        }
+    }
 }
 
 /**************************************************************
@@ -42,8 +48,14 @@ Product *Store::getProductFromID(std::string) {
  * Description: returns pointer to customer with matching ID.
  * Returns NULL if no matching ID is found.
 **************************************************************/
-Customer *Store::getMemberFromID(std::string) {
-    return nullptr;
+Customer *Store::getMemberFromID(std::string cust) {
+    for(int i = 0; i < members.size(); i++)
+    {
+        if (cust == members[i]->getAccountID())
+        {
+            return *(members[i]);
+        }
+    }
 }
 
 /**************************************************************
@@ -57,7 +69,23 @@ Customer *Store::getMemberFromID(std::string) {
  * Products that have "wood" in their title or description.
 **************************************************************/
 void Store::productSearch(std::string str) {
+    int wordLen = str.length();
+    int counter = 0;
+    for (int i = 0; i < inventory.size(); i++)
+    {
+        for(int j = 0; j < inventory[i]->getDescription().length(); j++)
+        {
+            if (inventory[i]->getDescription().at(j) == str.at(counter))
+            {
+                counter++;
+            }
 
+            else if(inventory[i]->getDescription().at(j) != str.at(counter) && counter >= 1)
+            {
+                counter = 0;
+            }
+        }
+    }
 }
 
 /**************************************************************
@@ -96,3 +124,6 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
 void Store::checkOutMember(std::string mID) {
 
 }
+
+
+
