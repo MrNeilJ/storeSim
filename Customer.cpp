@@ -14,8 +14,9 @@
 
 /**************************************************************
  *                  Customer::Customer
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: takes as parameters three values with which to
+ * initialize the Customer's name, account ID, and whether the
+ * customer is a premium member
 **************************************************************/
 Customer::Customer(std::string n, std::string a, bool pm) {
 
@@ -23,8 +24,8 @@ Customer::Customer(std::string n, std::string a, bool pm) {
 
 /**************************************************************
  *                  Customer::getAccountID
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 std::string Customer::getAccountID() {
     return std::string();
@@ -32,8 +33,8 @@ std::string Customer::getAccountID() {
 
 /**************************************************************
  *                  Customer::getCart
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 std::vector<std::string> Customer::getCart() {
     return std::vector<std::string>();
@@ -41,8 +42,8 @@ std::vector<std::string> Customer::getCart() {
 
 /**************************************************************
  *                  Customer::addProductToCart
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: adds the product ID code to the Customer's
+ * cart
 **************************************************************/
 void Customer::addProductToCart(std::string) {
 
@@ -50,8 +51,8 @@ void Customer::addProductToCart(std::string) {
 
 /**************************************************************
  *                  Customer::isPremiumMember
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: returns whether the customer is a premium
+ * member
 **************************************************************/
 bool Customer::isPremiumMember() {
     return false;
@@ -59,8 +60,7 @@ bool Customer::isPremiumMember() {
 
 /**************************************************************
  *                  Customer::emptyCart
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: empties the Customer's cart
 **************************************************************/
 void Customer::emptyCart() {
 

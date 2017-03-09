@@ -14,8 +14,7 @@
 
 /**************************************************************
  *                  Store::addProduct
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: adds a product to the inventory
 **************************************************************/
 void Store::addProduct(Product *p) {
 
@@ -23,8 +22,7 @@ void Store::addProduct(Product *p) {
 
 /**************************************************************
  *                  Store::addMember
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: adds a customer to the members
 **************************************************************/
 void Store::addMember(Customer *c) {
 
@@ -32,8 +30,8 @@ void Store::addMember(Customer *c) {
 
 /**************************************************************
  *                  Store::getProductFromID
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: returns pointer to product with matching ID.
+ * Returns NULL if no matching ID is found.
 **************************************************************/
 Product *Store::getProductFromID(std::string) {
     return nullptr;
@@ -41,8 +39,8 @@ Product *Store::getProductFromID(std::string) {
 
 /**************************************************************
  *                  Store::getMemberFromID
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: returns pointer to customer with matching ID.
+ * Returns NULL if no matching ID is found.
 **************************************************************/
 Customer *Store::getMemberFromID(std::string) {
     return nullptr;
@@ -50,8 +48,13 @@ Customer *Store::getMemberFromID(std::string) {
 
 /**************************************************************
  *                  Store::productSearch
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description:  for every product whose title or description
+ * contains the search string, prints out that product's title,
+ * ID code, price and description.  The first letter of the
+ * search string should be case-insensitive, i.e. a search for
+ * "wood" should match Products that have "Wood" in their title
+ * or description, and a search for "Wood" should match
+ * Products that have "wood" in their title or description.
 **************************************************************/
 void Store::productSearch(std::string str) {
 
@@ -59,8 +62,15 @@ void Store::productSearch(std::string str) {
 
 /**************************************************************
  *                  Store::addProductToMemberCart
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: If the product isn't found in the inventory,
+ * print "Product #[idCode goes here] not found."  If the
+ * member isn't found in the members, print "Member #[accountID
+ * goes here] not found."  If both are found and the product is
+ * still available, calls the member's addProductToCart method.
+ * Otherwise it prints "Sorry, product #[idCode goes here] is
+ * currently out of stock."  The same product can be added
+ * multiple times if the customer wants more than one of
+ * something.
 **************************************************************/
 void Store::addProductToMemberCart(std::string pID, std::string mID) {
 
@@ -68,8 +78,20 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
 
 /**************************************************************
  *                  Store::checkOutMember
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: If the member isn't found in the members, print
+ * "Member #[accountID goes here] not found."  Otherwise prints
+ * out the title and price for each product in the cart and
+ * decreases the available quantity of that product by 1.  If
+ * any product has already sold out, then on that line it
+ * should print 'Sorry, product #[idCode goes here], "[product
+ * name goes here]", is no longer available.'  At the bottom it
+ * should print out the subtotal for the cart, the shipping
+ * cost ($0 for premium members, 7% of the cart cost for
+ * normal members), and the final total cost for the cart
+ * (subtotal plus shipping).  If the cart is empty, it should
+ * just print "There are no items in the cart."  When the
+ * calculations are complete, the member's cart should be
+ * emptied.
 **************************************************************/
 void Store::checkOutMember(std::string mID) {
 

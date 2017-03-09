@@ -15,8 +15,9 @@
 
 /**************************************************************
  *                  Product::Product
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: takes as parameters five values with which to
+ * initialize the Product's idCode, title, description, price,
+ * and quantity available
 **************************************************************/
 Product::Product(std::string id, std::string t, std::string d, double p, int qa) {
 
@@ -24,8 +25,8 @@ Product::Product(std::string id, std::string t, std::string d, double p, int qa)
 
 /**************************************************************
  *                  Product::getIDCode
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 std::string Product::getIdCode() {
     return std::string();
@@ -33,8 +34,8 @@ std::string Product::getIdCode() {
 
 /**************************************************************
  *                  Product::getTitle
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 std::string Product::getTitle() {
     return std::string();
@@ -42,8 +43,8 @@ std::string Product::getTitle() {
 
 /**************************************************************
  *                  Product::getDescription
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 std::string Product::getDescription() {
     return std::string();
@@ -51,8 +52,8 @@ std::string Product::getDescription() {
 
 /**************************************************************
  *                  Product::getPrice
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 double Product::getPrice() {
     return 0;
@@ -60,8 +61,8 @@ double Product::getPrice() {
 
 /**************************************************************
  *                  Product::getQuantityAvailable
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: return the value of the corresponding data
+ * member
 **************************************************************/
 int Product::getQuantityAvailable() {
     return 0;
@@ -69,8 +70,7 @@ int Product::getQuantityAvailable() {
 
 /**************************************************************
  *                  Product::decreaseQuantity
- * Description: Constructor for the class to allow the user
- * to build a blank table 3 x 3 array
+ * Description: decreases the quantity available by one
 **************************************************************/
 void Product::decreaseQuantity() {
 
