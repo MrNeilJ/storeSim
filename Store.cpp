@@ -72,7 +72,24 @@ Customer *Store::getMemberFromID(std::string cust) {
  * Products that have "wood" in their title or description.
 **************************************************************/
 void Store::productSearch(std::string str) {
-
+    bool exists = false;
+    int invSize = inventory.size();
+    for (int i = 0; i < invSize; i++)
+    {
+        if (inventory[i]->getDescription().find(tolower(str)) || inventory[i]->getTitle().find(tolower(str)))
+        {
+            exists = true;
+            std::cout << "Item:        " << inventory[i]->getTitle()  << std::endl;
+            std::cout << "ID Code:     " << inventory[i]->getIdCode() << std::endl;
+            std::cout << "Price:       " << inventory[i]->getPrice()  << std::endl;
+            std::cout << "Description: " << inventory[i]->getDescription() << std::endl;
+            std::cout << "\n";
+        }
+    }
+    if (!exists)
+    {
+        std::cout << "There are no items that match this search. Try again!\n" << std::endl;
+    }
 }
 
 /**************************************************************
@@ -88,7 +105,57 @@ void Store::productSearch(std::string str) {
  * something.
 **************************************************************/
 void Store::addProductToMemberCart(std::string pID, std::string mID) {
+    bool inStore   = false;
+    bool inMember  = false;
+    bool inStock   = false;
+    int itemLocation = -1;
+    int memberLocation = -1;
 
+    int invSize    = inventory.size();
+    int memberSize = members.size();
+
+    // Check if item is in the store
+    for (int i = 0; i < invSize; i++)
+    {
+        if (inventory[i]->getIdCode() == pID)
+        {
+            inStore = true;
+            itemLocation = i;
+
+            // Check if the item is in stock
+            if (inventory[i]->getQuantityAvailable() > 0)
+            {
+                inStock = true;
+            }
+        }
+    }
+    // Check if individual is a member
+    for (int j = 0; j < memberSize; j++)
+    {
+        if (members[j]->getAccountID() == mID)
+        {
+            inMember = true;
+            memberLocation = j;
+        }
+    }
+
+    if (inMember && inStock && inStore)
+    {
+       members[memberLocation]->addProductToCart(pID);
+    }
+    else if (inMember && inStore && !inStock)
+    {
+        std::cout   << "Sorry, product #" << inventory[itemLocation]->getIdCode()
+                    << " is currently out of stock." << std::endl;
+    }
+    if (!inMember)
+    {
+        std::cout << "Sorry you are not a member." << std::endl;
+    }
+    if (!inStore)
+    {
+        std::cout << "Sorry, the item you are looking for is not in our store" << std::endl;
+    }
 }
 
 /**************************************************************
