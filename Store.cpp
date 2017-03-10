@@ -175,7 +175,27 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
  * calculations are complete, the member's cart should be
  * emptied.
 **************************************************************/
-void Store::checkOutMember(std::string mID) {
+void Store::checkOutMember(std::string mID)
+{
+    int memberSize = members.size();
+    bool exists = false;
+
+    for (int i = 0; i < memberSize; i++)
+    {
+        if (members[i]->getAccountID() == mID)
+        {
+            exists = true;
+            int cartSize = static_cast<int>(members[i]->getCart().size);
+            for (int j = 0; j < cartSize; j++)
+            {
+
+            }
+        }
+    }
+    if (!exists)
+    {
+        std::cout << "Member #" << mID << " not found." << std::endl;
+    }
 
 }
 
