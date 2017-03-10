@@ -11,6 +11,7 @@
 **************************************************************/
 
 #include "Store.hpp"
+#include <iostream>
 
 /**************************************************************
  *                  Store::addProduct
@@ -41,6 +42,7 @@ Product *Store::getProductFromID(std::string item) {
             return *(inventory[i]);
         }
     }
+    return NULL;
 }
 
 /**************************************************************
@@ -56,6 +58,7 @@ Customer *Store::getMemberFromID(std::string cust) {
             return *(members[i]);
         }
     }
+    return NULL;
 }
 
 /**************************************************************
@@ -69,23 +72,7 @@ Customer *Store::getMemberFromID(std::string cust) {
  * Products that have "wood" in their title or description.
 **************************************************************/
 void Store::productSearch(std::string str) {
-    int wordLen = str.length();
-    int counter = 0;
-    for (int i = 0; i < inventory.size(); i++)
-    {
-        for(int j = 0; j < inventory[i]->getDescription().length(); j++)
-        {
-            if (inventory[i]->getDescription().at(j) == str.at(counter))
-            {
-                counter++;
-            }
 
-            else if(inventory[i]->getDescription().at(j) != str.at(counter) && counter >= 1)
-            {
-                counter = 0;
-            }
-        }
-    }
 }
 
 /**************************************************************
