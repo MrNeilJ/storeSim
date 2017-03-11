@@ -35,8 +35,10 @@ void Store::addMember(Customer *c) {
  * Returns NULL if no matching ID is found.
 **************************************************************/
 Product *Store::getProductFromID(std::string item) {
+    // Search through the exact amount of inventory items at that moment
     for(int i = 0; i < inventory.size(); i++)
     {
+        // If the item code matches on in our inventory, return a pointer to it
         if (item == inventory[i]->getIdCode())
         {
             return *(inventory[i]);
@@ -51,10 +53,13 @@ Product *Store::getProductFromID(std::string item) {
  * Returns NULL if no matching ID is found.
 **************************************************************/
 Customer *Store::getMemberFromID(std::string cust) {
+    // Search through the exact amount of currently registered members
     for(int i = 0; i < members.size(); i++)
     {
+        // If the current member search ID is equivalent to the customer query
         if (cust == members[i]->getAccountID())
         {
+            // return the pointer to that member
             return *(members[i]);
         }
     }
@@ -72,8 +77,13 @@ Customer *Store::getMemberFromID(std::string cust) {
  * Products that have "wood" in their title or description.
 **************************************************************/
 void Store::productSearch(std::string str) {
+    // Set an exists boolean variable to check the items is in inventory
     bool exists = false;
+
+    // Save the current size of the inventory
     int invSize = inventory.size();
+
+
     for (int i = 0; i < invSize; i++)
     {
         if (inventory[i]->getDescription().find(tolower(str)) || inventory[i]->getTitle().find(tolower(str)))
@@ -179,24 +189,74 @@ void Store::checkOutMember(std::string mID)
 {
     int memberSize = members.size();
     bool exists = false;
+    double totalCost = 0;
+    double shipping = 0;
 
     for (int i = 0; i < memberSize; i++)
     {
-        if (members[i]->getAccountID() == mID)
-        {
+        if (members[i]->getAccountID() == mID) {
             exists = true;
+
             int cartSize = static_cast<int>(members[i]->getCart().size);
+
+            // If there are no items in the cart, let the user know
+            if (cartSize == 0) {
+                std::cout << "There are no items in the cart." << std::endl;
+            }
+
+            // Select each cart item
             for (int j = 0; j < cartSize; j++)
             {
+                // Search through entire inventory for matching item
+                for (int k = 0; k < inventory.size(); k++)
+                {
+                    // When we find a matching item...
+                    if (inventory.at(k)->getIdCode() == members[i]->getCart().at(j))
+                    {
+                        // Check to see if it is in stock, if not let customer know
+                        if (inventory.at(k)->getQuantityAvailable() < 1)
+                        {
+                            std::cout << "Sorry, product #" << inventory.at(k)->getIdCode()
+                                      << ", " << inventory.at(k)->getTitle() << "is no longer available" << std::endl;
+                        }
+                        // Otherwise print out name and price and add it to total
+                        else
+                        {
+                            std::cout << "Name:  " << inventory.at(k)->getTitle() << std::endl;
+                            std::cout << "Price: " << inventory.at(k)->getPrice() << std::endl;
 
+                            totalCost = inventory.at(k)->getPrice();
+                            inventory.at(k)->decreaseQuantity();
+                        }
+                    }
+                }
             }
+            // Check to see if the user is a premium member
+            if (members[i]->isPremiumMember())
+            {
+                shipping = 0;
+            }
+            else
+            {
+                shipping = totalCost * 0.7;
+            }
+
+            // Print out the subtotal and shipping for the user
+            std::cout << "===========================================" << std::endl;
+            std::cout << "Subtotal: " << totalCost << std::endl;
+            std::cout << "Shipping: " << shipping << std::endl;
+            std::cout << "-------------------------------------------" << std::endl;
+            std::cout << "Total:    " << totalCost + shipping << std::endl;
+
+            // Empty the cart once done
+            members[i]->emptyCart();
         }
     }
+    // If the member does not exist, then let the user know they couldn't be found
     if (!exists)
     {
         std::cout << "Member #" << mID << " not found." << std::endl;
     }
-
 }
 
 
