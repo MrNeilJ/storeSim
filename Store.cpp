@@ -12,6 +12,7 @@
 
 #include "Store.hpp"
 #include <iostream>
+#include <cctype>
 
 /**************************************************************
  *                  Store::addProduct
@@ -41,7 +42,7 @@ Product *Store::getProductFromID(std::string item) {
         // If the item code matches on in our inventory, return a pointer to it
         if (item == inventory[i]->getIdCode())
         {
-            return *(inventory[i]);
+            return inventory[i];
         }
     }
     return NULL;
@@ -60,7 +61,7 @@ Customer *Store::getMemberFromID(std::string cust) {
         if (cust == members[i]->getAccountID())
         {
             // return the pointer to that member
-            return *(members[i]);
+            return members[i];
         }
     }
     return NULL;
@@ -197,7 +198,7 @@ void Store::checkOutMember(std::string mID)
         if (members[i]->getAccountID() == mID) {
             exists = true;
 
-            int cartSize = static_cast<int>(members[i]->getCart().size);
+            int cartSize = members[i]->getCart().size;
 
             // If there are no items in the cart, let the user know
             if (cartSize == 0) {
