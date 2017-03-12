@@ -20,41 +20,77 @@ int main() {
     /*********************************************
      *              STORE PRODUCTS
      *********************************************/
-     Product banana("100",
-                    "Banana",
-                    "yellow fruit, lots of potassium",
-                    1.25,
-                    10);
+     Product banana(        "100",
+                            "Banana",
+                            "yellow fruit, lots of potassium",
+                            1.25,
+                            10);
 
-    Product apple(  "200",
-                    "Apple",
-                    "red fruit, keeps the doctor away.",
-                    1.50,
-                    30);
+    Product apple(          "200",
+                            "Apple",
+                            "red fruit, keeps the doctor away.",
+                            1.50,
+                            30);
 
-    Product cookies("305",
-                    "Cookies",
-                    "fresh sweets, chocolate chips, and baked fresh daily",
-                    3.25,
-                    12);
+    Product cookies(        "305",
+                            "Cookies",
+                            "fresh sweets, chocolate chips, and baked fresh daily",
+                            3.25,
+                            12);
 
-    Product milk(   "400",
-                    "Milk",
-                    "Lots of protein and calcium, keeps your bones strong",
-                    2.50,
-                    40);
+    Product milk(           "400",
+                            "Milk",
+                            "Lots of protein and calcium, keeps your bones strong",
+                            2.50,
+                            40);
 
-    Product beer(   "2002",
-                    "Beer",
-                    "Craft selections changed out weekly, extra hops for you!",
-                    6.50,
-                    6);
+    Product beer(           "2002",
+                            "Beer",
+                            "Craft selections changed out weekly, extra hops for you!",
+                            6.50,
+                            6);
 
-    Product iceCream(   "505",
-                        "Ice Cream",
-                        "Great on a hot day, frozen desserts churned daily",
-                        3.50,
-                        15);
+    Product iceCream(       "505",
+                            "Ice Cream",
+                            "Great on a hot day, frozen desserts churned daily",
+                            3.50,
+                            15);
+
+    Product bread(          "502",
+                            "Bread",
+                            "Baked daily. Soft, whole-grain loafs.",
+                            4.25,
+                            2);
+
+    Product redBlender(     "720",
+                            "Red Blender",
+                            "Sturdy blender perfect for making smoothies and sauces",
+                            350,
+                            1);
+
+    Product hotAirBalloon(  "8220",
+                            "Hot Air Balloon",
+                            "Fly into the sky in your own balloon - comes in red, blue or chartreuse",
+                            700,
+                            1);
+
+    Product giantRobot(     "900",
+                            "Giant Robot",
+                            "Pierce the heavens with your drill in this glorious robot! Size may vary",
+                            7000,
+                            1);
+
+    Product liveGoat(       "650",
+                            "Live Goat",
+                            "Yes, you read this right. One live goat. Take it, it eats everything",
+                            1,
+                            1);
+
+    Product oakTable(       "1984",
+                            "Oak and Glass Coffee Table",
+                            "Only the highest of quality woods used in our tables here, oh and oak",
+                            250,
+                            10);
 
     // Add products to the store for use
     testStore.addProduct(&banana);
@@ -63,6 +99,12 @@ int main() {
     testStore.addProduct(&milk);
     testStore.addProduct(&beer);
     testStore.addProduct(&iceCream);
+    testStore.addProduct(&bread);
+    testStore.addProduct(&redBlender);
+    testStore.addProduct(&hotAirBalloon);
+    testStore.addProduct(&giantRobot);
+    testStore.addProduct(&liveGoat);
+    testStore.addProduct(&oakTable);
 
     /*********************************************
      *              STORE MEMBERS
