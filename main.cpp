@@ -12,6 +12,7 @@
 #include "Store.hpp"
 
 #include <iostream>
+#include <string>
 
 int main() {
     // STORE CREATION
@@ -106,6 +107,8 @@ int main() {
     testStore.addProduct(&liveGoat);
     testStore.addProduct(&oakTable);
 
+
+
     /*********************************************
      *              STORE MEMBERS
      *********************************************/
@@ -120,6 +123,54 @@ int main() {
     Customer Shaun(     "Shaun",    "9", false);
     Customer brendan(   "Brendan",  "10", true);
 
+    int nextMemberID = 11;
+
+
+
+    /*********************************************
+     *          STORE FUNCTIONALITY
+     *********************************************/
+    std::cout << "****************************************" << std::endl;
+    std::cout << "*             TESTER STORE            *" << std::endl;
+    std::cout << "****************************************" << std::endl;
+    std::cout << "Welcome to Tester Store, Home of products!" << std::endl;
+    std::cout << "\nWhat can we help you out with today?" << std::endl;
+
+
+
+
+
+    /*int entrance;
+    do {
+        std::cout << "  1) New Member Signup" << std::endl;
+        std::cout << "  2) Returning Customer" << std::endl;
+
+
+        std::cin >> entrance;
+        if (entrance <= 0 || entrance >= 3)
+        {
+            std::cout << "Did not recognize that input, please try again. Here are you options:" << std::endl;
+        }
+
+    } while (entrance != 1 && entrance != 2);
+
+    // If it is a new member signup
+    if (entrance == 1)
+    {
+        std::cout << "Welcome! What is your name?" << std::endl;
+        std::string newName;
+        std::cin >> newName;
+
+        std::cout << "Would you like to be a premium Member?(Y/N)" << std::endl;
+        char newPrem;
+        std::cin >> newPrem;
+
+        std::cout << "Great! Your member ID Number is: " << nextMemberID << std::endl;
+
+        Customer *nextMember = new Customer(newName, std::to_string(nextMemberID), newPrem == 'Y'?true : false);
+
+        nextMemberID++;
+    }*/
 
 
 
