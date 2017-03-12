@@ -123,7 +123,6 @@ int main() {
     Customer Shaun(     "Shaun",    "9", false);
     Customer brendan(   "Brendan",  "10", true);
 
-    int nextMemberID = 11;
 
 
 
@@ -140,7 +139,7 @@ int main() {
 
 
 
-    /*int entrance;
+    int entrance;
     do {
         std::cout << "  1) New Member Signup" << std::endl;
         std::cout << "  2) Returning Customer" << std::endl;
@@ -157,21 +156,39 @@ int main() {
     // If it is a new member signup
     if (entrance == 1)
     {
-        std::cout << "Welcome! What is your name?" << std::endl;
+        std::cout << "Type in the name, member id, and if you are a premium member (1 or 0) (seprate by spaces)" << std::endl;
         std::string newName;
         std::cin >> newName;
 
-        std::cout << "Would you like to be a premium Member?(Y/N)" << std::endl;
-        char newPrem;
-        std::cin >> newPrem;
+        std::string newMemberID;
+        std::cin >> newMemberID;
 
-        std::cout << "Great! Your member ID Number is: " << nextMemberID << std::endl;
+        bool newPremium;
+        std::cin >> newPremium;
 
-        Customer *nextMember = new Customer(newName, std::to_string(nextMemberID), newPrem == 'Y'?true : false);
+        testStore.addMember(new Customer(newName, newMemberID, newPremium));
 
-        nextMemberID++;
-    }*/
+        std::cout << "Member #" << newMemberID << " registered for store membership.  Thank you!" << std::endl;
+    }
 
+    // Ask for user ID and make sure they are apart of the membership.
+    std::cout << "Thank you for choosing Test Store, type in your membership ID:";
+
+    std::string currUser;
+    std::cin >> currUser;
+
+    Customer *currentCust;
+    currentCust = testStore.getMemberFromID(currUser);
+
+    // Check to see if the user is in the system
+    if (currentCust == NULL)
+    {
+
+    }
+    else
+    {
+        std::cout << "Welcome #" << currentCust->getAccountID() << " what would you like to do?";
+    }
 
 
     return 0;
