@@ -82,12 +82,12 @@ void Store::productSearch(std::string str) {
     bool exists = false;
 
     // Save the current size of the inventory
-    int invSize = inventory.size();
+    double invSize = inventory.size();
 
 
     for (int i = 0; i < invSize; i++)
     {
-        if (inventory[i]->getDescription().find(tolower(str)) || inventory[i]->getTitle().find(tolower(str)))
+        if (inventory[i]->getDescription().find(str) || inventory[i]->getTitle().find(str))
         {
             exists = true;
             std::cout << "Item:        " << inventory[i]->getTitle()  << std::endl;
@@ -122,8 +122,8 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
     int itemLocation = -1;
     int memberLocation = -1;
 
-    int invSize    = inventory.size();
-    int memberSize = members.size();
+    double invSize    = inventory.size();
+    double memberSize = members.size();
 
     // Check if item is in the store
     for (int i = 0; i < invSize; i++)
@@ -198,7 +198,7 @@ void Store::checkOutMember(std::string mID)
         if (members[i]->getAccountID() == mID) {
             exists = true;
 
-            int cartSize = members[i]->getCart().size;
+            double cartSize = members[i]->getCart().size();
 
             // If there are no items in the cart, let the user know
             if (cartSize == 0) {
