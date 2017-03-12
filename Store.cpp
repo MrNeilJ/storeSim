@@ -223,8 +223,8 @@ void Store::checkOutMember(std::string mID)
                         // Otherwise print out name and price and add it to total
                         else
                         {
-                            std::cout << "Name:  " << inventory.at(k)->getTitle() << std::endl;
-                            std::cout << "Price: " << inventory.at(k)->getPrice() << std::endl;
+                            std::cout << inventory.at(k)->getTitle() << " - "
+                                      << inventory.at(k)->getPrice() << std::endl;
 
                             totalCost = inventory.at(k)->getPrice();
                             inventory.at(k)->decreaseQuantity();

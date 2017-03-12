@@ -109,6 +109,18 @@ int main() {
     /*********************************************
      *              STORE MEMBERS
      *********************************************/
+    Customer danny(     "Danny",    "1", true);
+    Customer todd(      "Todd",     "2", true);
+    Customer chase(     "Chase",    "3", false);
+    Customer kyle(      "Kyle",     "4", true);
+    Customer travis(    "Travis",   "5", true);
+    Customer doug(      "Doug",     "6", false);
+    Customer haley(     "Haley",    "7", true);
+    Customer andy(      "Andy",     "8", true);
+    Customer Shaun(     "Shaun",    "9", false);
+    Customer brendan(   "Brendan",  "10", true);
+
+
 
 
     return 0;
