@@ -120,8 +120,20 @@ int main() {
     Customer doug(      "Doug",     "6", false);
     Customer haley(     "Haley",    "7", true);
     Customer andy(      "Andy",     "8", true);
-    Customer Shaun(     "Shaun",    "9", false);
+    Customer shaun(     "Shaun",    "9", false);
     Customer brendan(   "Brendan",  "10", true);
+
+    // Add members to the store roster
+    testStore.addMember(&danny);
+    testStore.addMember(&todd);
+    testStore.addMember(&chase);
+    testStore.addMember(&kyle);
+    testStore.addMember(&travis);
+    testStore.addMember(&doug);
+    testStore.addMember(&haley);
+    testStore.addMember(&andy);
+    testStore.addMember(&shaun);
+    testStore.addMember(&brendan);
 
 
 
@@ -134,9 +146,6 @@ int main() {
     std::cout << "****************************************" << std::endl;
     std::cout << "Welcome to Tester Store, Home of products!" << std::endl;
     std::cout << "\nWhat can we help you out with today?" << std::endl;
-
-
-
 
 
     int entrance;
@@ -183,12 +192,60 @@ int main() {
     // Check to see if the user is in the system
     if (currentCust == NULL)
     {
-
+        std::cout << "I'm sorry, you don't appear to be registered, come back once you're a member.";
+        return 0;
     }
     else
     {
-        std::cout << "Welcome #" << currentCust->getAccountID() << " what would you like to do?";
+        std::cout << "Welcome #" << currentCust->getAccountID() << " what would you like to do?\n";
+
+        int response = 0;
+        do
+        {
+            std::cout << "  1) Search for a product"    << std::endl;
+            std::cout << "  2) Add product by known ID" << std::endl;
+            std::cout << "  3) View current cart"       << std::endl;
+            std::cout << "  4) Empty Cart"              << std::endl;
+            std::cout << "  5) Checkout"                << std::endl;
+            std::cout << "  6) Quit"                    << std::endl;
+
+            std::cin >> response;
+
+            std::string wordSearch;
+
+            switch(response)
+
+            {
+                case 1: std::cout << "Give us word to search for in our inventory: ";
+                        std::cin >> wordSearch;
+                        testStore.productSearch(wordSearch);
+                        break;
+
+                case 2:
+                        break;
+
+                case 3:
+                        break;
+
+                case 4:
+                        break;
+
+                case 5:
+                        break;
+
+                case 6: std::cout << "Now leaving Test Store, have a great day!" << std::endl;
+                        return 0;
+
+                default: std::cout << "I do not recognize that request, look at the options and try again." << std::endl;
+                         break;
+            }
+
+        }while(response != 6);
+
+
     }
+
+
 
 
     return 0;

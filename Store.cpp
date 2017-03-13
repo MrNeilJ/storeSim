@@ -87,6 +87,8 @@ void Store::productSearch(std::string str) {
 
     for (int i = 0; i < invSize; i++)
     {
+        exists = false;
+
         if (inventory[i]->getDescription().find(str) || inventory[i]->getTitle().find(str))
         {
             exists = true;
