@@ -13,6 +13,7 @@
 #include "Store.hpp"
 #include <iostream>
 #include <cctype>
+#include <string>
 
 /**************************************************************
  *                  Store::addProduct
@@ -84,12 +85,17 @@ void Store::productSearch(std::string str) {
     // Save the current size of the inventory
     double invSize = inventory.size();
 
-
     for (int i = 0; i < invSize; i++)
     {
-        exists = false;
+        std::string itemTitle = inventory.at(i)->getTitle();
+        itemTitle[0] = tolower(itemTitle[0]);
 
-        if (inventory[i]->getDescription().find(str) || inventory[i]->getTitle().find(str))
+        std::string itemDesc = inventory.at(i)->getDescription();
+        itemDesc[0] = tolower(itemDesc[0]);
+
+
+
+        if (itemTitle.find(str)!=std::string::npos || itemDesc.find(str)!=std::string::npos)
         {
             exists = true;
             std::cout << "Item:        " << inventory[i]->getTitle()  << std::endl;
@@ -206,53 +212,49 @@ void Store::checkOutMember(std::string mID)
             if (cartSize == 0) {
                 std::cout << "There are no items in the cart." << std::endl;
             }
+            else {
 
-            // Select each cart item
-            for (int j = 0; j < cartSize; j++)
-            {
-                // Search through entire inventory for matching item
-                for (int k = 0; k < inventory.size(); k++)
-                {
-                    // When we find a matching item...
-                    if (inventory.at(k)->getIdCode() == members[i]->getCart().at(j))
-                    {
-                        // Check to see if it is in stock, if not let customer know
-                        if (inventory.at(k)->getQuantityAvailable() < 1)
-                        {
-                            std::cout << "Sorry, product #" << inventory.at(k)->getIdCode()
-                                      << ", " << inventory.at(k)->getTitle() << "is no longer available" << std::endl;
-                        }
-                        // Otherwise print out name and price and add it to total
-                        else
-                        {
-                            std::cout << inventory.at(k)->getTitle() << " - "
-                                      << inventory.at(k)->getPrice() << std::endl;
 
-                            totalCost = inventory.at(k)->getPrice();
-                            inventory.at(k)->decreaseQuantity();
+                // Select each cart item
+                for (int j = 0; j < cartSize; j++) {
+                    // Search through entire inventory for matching item
+                    for (int k = 0; k < inventory.size(); k++) {
+                        // When we find a matching item...
+                        if (inventory.at(k)->getIdCode() == members[i]->getCart().at(j)) {
+                            // Check to see if it is in stock, if not let customer know
+                            if (inventory.at(k)->getQuantityAvailable() < 1) {
+                                std::cout << "Sorry, product #" << inventory.at(k)->getIdCode()
+                                          << ", " << inventory.at(k)->getTitle() << " is no longer available"
+                                          << std::endl;
+                            }
+                                // Otherwise print out name and price and add it to total
+                            else {
+                                std::cout << inventory.at(k)->getTitle() << " - "
+                                          << inventory.at(k)->getPrice() << std::endl;
+
+                                totalCost += inventory.at(k)->getPrice();
+                                inventory.at(k)->decreaseQuantity();
+                            }
                         }
                     }
                 }
-            }
-            // Check to see if the user is a premium member
-            if (members[i]->isPremiumMember())
-            {
-                shipping = 0;
-            }
-            else
-            {
-                shipping = totalCost * 0.7;
-            }
+                // Check to see if the user is a premium member
+                if (members[i]->isPremiumMember()) {
+                    shipping = 0;
+                } else {
+                    shipping = totalCost * 0.07;
+                }
 
-            // Print out the subtotal and shipping for the user
-            std::cout << "===========================================" << std::endl;
-            std::cout << "Subtotal: " << totalCost << std::endl;
-            std::cout << "Shipping: " << shipping << std::endl;
-            std::cout << "-------------------------------------------" << std::endl;
-            std::cout << "Total:    " << totalCost + shipping << std::endl;
+                // Print out the subtotal and shipping for the user
+                std::cout << "===========================================" << std::endl;
+                std::cout << "Subtotal: " << totalCost << std::endl;
+                std::cout << "Shipping: " << shipping << std::endl;
+                std::cout << "-------------------------------------------" << std::endl;
+                std::cout << "Total:    " << totalCost + shipping << std::endl;
 
-            // Empty the cart once done
-            members[i]->emptyCart();
+                // Empty the cart once done
+                members[i]->emptyCart();
+            }
         }
     }
     // If the member does not exist, then let the user know they couldn't be found

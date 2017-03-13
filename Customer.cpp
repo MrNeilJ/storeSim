@@ -74,5 +74,5 @@ bool Customer::isPremiumMember() {
  * Description: empties the Customer's cart
 **************************************************************/
 void Customer::emptyCart() {
-    cart.empty();
+    cart.clear();
 }

@@ -211,31 +211,46 @@ int main() {
 
             std::cin >> response;
 
+            // Variables needed for the switch below
             std::string wordSearch;
+            std::string currProduct;
 
             switch(response)
 
             {
+                // User Selected to search for items
                 case 1: std::cout << "Give us word to search for in our inventory: ";
                         std::cin >> wordSearch;
                         testStore.productSearch(wordSearch);
                         break;
 
-                case 2:
+                // User selected to add an item to their cart
+                case 2: std::cout << "Type in the product ID of the item you would like to add: ";
+                        std::cin >> currProduct;
+                        testStore.addProductToMemberCart(currProduct, currUser);
                         break;
 
+                // User selected to view the items currently in their cart
                 case 3:
                         break;
 
+                // User selected to Empty their cart
                 case 4:
+                        currentCust->emptyCart();
+                        std::cout << "Cart is empty, now keep shopping!" << std::endl;
                         break;
 
-                case 5:
-                        break;
+                // User selected to Checkout
+                case 5: std::cout << "Checking out customer #" << currUser << "." << std::endl;
+                        testStore.checkOutMember(currUser);
+                        std::cout << "Thank you and have a great day!" << std::endl;
+                        return 0;
 
+                // User selected to leave store
                 case 6: std::cout << "Now leaving Tester Store, have a great day!" << std::endl;
                         return 0;
 
+                // Unknown response added
                 default: std::cout << "I do not recognize that request, look at the options and try again." << std::endl;
                          break;
             }
