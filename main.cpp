@@ -233,7 +233,7 @@ int main() {
                 case 5:
                         break;
 
-                case 6: std::cout << "Now leaving Test Store, have a great day!" << std::endl;
+                case 6: std::cout << "Now leaving Tester Store, have a great day!" << std::endl;
                         return 0;
 
                 default: std::cout << "I do not recognize that request, look at the options and try again." << std::endl;
