@@ -215,23 +215,32 @@ int main() {
             std::string wordSearch;
             std::string currProduct;
 
-            switch(response)
-
-            {
+            switch(response) {
                 // User Selected to search for items
-                case 1: std::cout << "Give us word to search for in our inventory: ";
-                        std::cin >> wordSearch;
-                        testStore.productSearch(wordSearch);
-                        break;
+                case 1:
+                    std::cout << "Give us word to search for in our inventory: ";
+                    std::cin >> wordSearch;
+                    testStore.productSearch(wordSearch);
+                    break;
 
-                // User selected to add an item to their cart
-                case 2: std::cout << "Type in the product ID of the item you would like to add: ";
-                        std::cin >> currProduct;
-                        testStore.addProductToMemberCart(currProduct, currUser);
-                        break;
+                    // User selected to add an item to their cart
+                case 2:
+                    std::cout << "Type in the product ID of the item you would like to add: ";
+                    std::cin >> currProduct;
+                    testStore.addProductToMemberCart(currProduct, currUser);
+                    break;
 
-                // User selected to view the items currently in their cart
-                case 3:
+                    // User selected to view the items currently in their cart
+                case 3: {
+                        std::vector<std::string> currCart = currentCust->getCart();
+
+                        for (int i = 0; i < currentCust->getCart().size(); i++)
+                        {
+                            std::cout << testStore.getProductFromID(currCart.at(i))->getTitle()
+                                      << " -  ID: #" << testStore.getProductFromID(currCart.at(i))->getIdCode()
+                                      <<  std::endl;
+                        }
+                        }
                         break;
 
                 // User selected to Empty their cart
