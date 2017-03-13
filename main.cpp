@@ -232,14 +232,14 @@ int main() {
 
                     // User selected to view the items currently in their cart
                 case 3: {
-                        std::vector<std::string> currCart = currentCust->getCart();
+                            std::vector<std::string> currCart = currentCust->getCart();
 
-                        for (int i = 0; i < currentCust->getCart().size(); i++)
-                        {
-                            std::cout << testStore.getProductFromID(currCart.at(i))->getTitle()
-                                      << " -  ID: #" << testStore.getProductFromID(currCart.at(i))->getIdCode()
-                                      <<  std::endl;
-                        }
+                            for (int i = 0; i < currentCust->getCart().size(); i++)
+                            {
+                                std::cout << testStore.getProductFromID(currCart.at(i))->getTitle()
+                                          << " -  ID: #" << testStore.getProductFromID(currCart.at(i))->getIdCode()
+                                          <<  std::endl;
+                            }
                         }
                         break;
 
@@ -263,14 +263,7 @@ int main() {
                 default: std::cout << "I do not recognize that request, look at the options and try again." << std::endl;
                          break;
             }
-
         }while(response != 6);
-
-
     }
-
-
-
-
     return 0;
 }
