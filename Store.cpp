@@ -17,7 +17,7 @@
 
 /**************************************************************
  *                  Store::addProduct
- * Description: adds a product to the inventory
+ * Description: adds a product to the inventory of the store
 **************************************************************/
 void Store::addProduct(Product *p) {
     inventory.push_back(p);
@@ -25,7 +25,7 @@ void Store::addProduct(Product *p) {
 
 /**************************************************************
  *                  Store::addMember
- * Description: adds a customer to the members
+ * Description: adds a customer to the members of the store
 **************************************************************/
 void Store::addMember(Customer *c) {
     members.push_back(c);
@@ -54,12 +54,12 @@ Product *Store::getProductFromID(std::string item) {
  * Description: returns pointer to customer with matching ID.
  * Returns NULL if no matching ID is found.
 **************************************************************/
-Customer *Store::getMemberFromID(std::string cust) {
+Customer *Store::getMemberFromID(std::string cx) {
     // Search through the exact amount of currently registered members
     for(int i = 0; i < members.size(); i++)
     {
         // If the current member search ID is equivalent to the customer query
-        if (cust == members[i]->getAccountID())
+        if (cx == members[i]->getAccountID())
         {
             // return the pointer to that member
             return members[i];
@@ -87,16 +87,19 @@ void Store::productSearch(std::string str) {
 
     for (int i = 0; i < invSize; i++)
     {
+        // Set the first letter to a lower case in the title
         std::string itemTitle = inventory.at(i)->getTitle();
         itemTitle[0] = tolower(itemTitle[0]);
 
+        // Set the first letter to a lower case in the description
         std::string itemDesc = inventory.at(i)->getDescription();
         itemDesc[0] = tolower(itemDesc[0]);
 
+        // Set the first letter to a lower case in the search term
         str[0] = tolower(str[0]);
 
 
-
+        // Utilized the find function learned of npos from the .find() man pages
         if (itemTitle.find(str)!=std::string::npos || itemDesc.find(str)!=std::string::npos)
         {
             exists = true;
@@ -107,6 +110,7 @@ void Store::productSearch(std::string str) {
             std::cout << "\n";
         }
     }
+    // If the product is not found in inventory, alert the user.
     if (!exists)
     {
         std::cout << "There are no items that match this search. Try again!\n" << std::endl;
@@ -126,18 +130,19 @@ void Store::productSearch(std::string str) {
  * something.
 **************************************************************/
 void Store::addProductToMemberCart(std::string pID, std::string mID) {
+    // Variables needed to keep track on items and assist with readability
     bool inStore   = false;
     bool inMember  = false;
     bool inStock   = false;
     int itemLocation = -1;
     int memberLocation = -1;
-
     double invSize    = inventory.size();
     double memberSize = members.size();
 
     // Check if item is in the store
     for (int i = 0; i < invSize; i++)
     {
+        // If we are able to find the item, mark inStore as true and save it's location
         if (inventory[i]->getIdCode() == pID)
         {
             inStore = true;
@@ -159,11 +164,13 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
             memberLocation = j;
         }
     }
-
+    // Check to make sure they are a member, the item is in stock, and we have the item
     if (inMember && inStock && inStore)
     {
        members[memberLocation]->addProductToCart(pID);
     }
+
+    // Check to see if they are a member, the item is in store, and that the item is out of stock
     else if (inMember && inStore && !inStock)
     {
         std::cout   << "Sorry, product #" << inventory[itemLocation]->getIdCode()
@@ -198,6 +205,7 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
 **************************************************************/
 void Store::checkOutMember(std::string mID)
 {
+    // Variables needed for function functionality
     int memberSize = members.size();
     bool exists = false;
     double totalCost = 0;
@@ -205,32 +213,38 @@ void Store::checkOutMember(std::string mID)
 
     for (int i = 0; i < memberSize; i++)
     {
+        // If the member in the store matches the current member search mark as true.
         if (members[i]->getAccountID() == mID) {
             exists = true;
 
             double cartSize = members[i]->getCart().size();
 
             // If there are no items in the cart, let the user know
-            if (cartSize == 0) {
+            if (cartSize == 0)
+            {
                 std::cout << "There are no items in the cart." << std::endl;
             }
-            else {
-
-
+            else
+            {
                 // Select each cart item
-                for (int j = 0; j < cartSize; j++) {
+                for (int j = 0; j < cartSize; j++)
+                {
                     // Search through entire inventory for matching item
-                    for (int k = 0; k < inventory.size(); k++) {
+                    for (int k = 0; k < inventory.size(); k++)
+                    {
                         // When we find a matching item...
-                        if (inventory.at(k)->getIdCode() == members[i]->getCart().at(j)) {
+                        if (inventory.at(k)->getIdCode() == members[i]->getCart().at(j))
+                        {
                             // Check to see if it is in stock, if not let customer know
-                            if (inventory.at(k)->getQuantityAvailable() < 1) {
+                            if (inventory.at(k)->getQuantityAvailable() < 1)
+                            {
                                 std::cout << "Sorry, product #" << inventory.at(k)->getIdCode()
                                           << ", " << inventory.at(k)->getTitle() << " is no longer available"
                                           << std::endl;
                             }
-                                // Otherwise print out name and price and add it to total
-                            else {
+                            // Otherwise print out name and price and add it to total
+                            else
+                            {
                                 std::cout << inventory.at(k)->getTitle() << " - "
                                           << inventory.at(k)->getPrice() << std::endl;
 
@@ -240,10 +254,12 @@ void Store::checkOutMember(std::string mID)
                         }
                     }
                 }
-                // Check to see if the user is a premium member
-                if (members[i]->isPremiumMember()) {
+                // Check to see if the user is a premium member and link respective shipping costs
+                if (members[i]->isPremiumMember())
+                {
                     shipping = 0;
-                } else {
+                } else
+                {
                     shipping = totalCost * 0.07;
                 }
 
