@@ -1,19 +1,19 @@
 /**************************************************************
  * Author: Neil Johnson
  *
- * Date: 3.3.2017
+ * Date: 3.10.2017
  *
  * Description: This file hosts the member functions of the
- * board class.  These functions allow the user to create
- * a board, set moves on the blank board, as well as check
- * the status of the game to see if there is a winner or a
- * draw.
+ * Store class.  This hosts the main functionality of the
+ * application.  Here the previously created items and members
+ * can be added to a single Store class.  We can freely search
+ * store inventory, empty user carts, and even check individual
+ * customers out with the various member functions hosted in
+ * this Store class.
 **************************************************************/
 
 #include "Store.hpp"
 #include <iostream>
-#include <cctype>
-#include <string>
 
 /**************************************************************
  *                  Store::addProduct
@@ -92,6 +92,8 @@ void Store::productSearch(std::string str) {
 
         std::string itemDesc = inventory.at(i)->getDescription();
         itemDesc[0] = tolower(itemDesc[0]);
+
+        str[0] = tolower(str[0]);
 
 
 

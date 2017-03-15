@@ -1,13 +1,14 @@
 /**************************************************************
  * Author: Neil Johnson
  *
- * Date: 3.3.2017
+ * Date: 3.10.2017
  *
  * Description: This file hosts the member functions of the
- * board class.  These functions allow the user to create
- * a board, set moves on the blank board, as well as check
- * the status of the game to see if there is a winner or a
- * draw.
+ * Product class.  This allows the user to register products
+ * with a name, id #, short description of the item, price
+ * and even how many items it has.  The user can then get
+ * this information returned to them and even decrease the
+ * quantity available after creation.
 **************************************************************/
 
 #include "Product.hpp"
@@ -30,8 +31,8 @@ Product::Product(std::string id, std::string t, std::string d, double p, int qa)
 
 /**************************************************************
  *                  Product::getIDCode
- * Description: return the value of the corresponding data
- * member
+ * Description: return the value stored within that Product's
+ * ID Code Variable.
 **************************************************************/
 std::string Product::getIdCode() {
     return idCode;
@@ -39,8 +40,8 @@ std::string Product::getIdCode() {
 
 /**************************************************************
  *                  Product::getTitle
- * Description: return the value of the corresponding data
- * member
+ * Description: return the value within that Product's Title
+ * Variable.
 **************************************************************/
 std::string Product::getTitle() {
     return title;
@@ -48,8 +49,8 @@ std::string Product::getTitle() {
 
 /**************************************************************
  *                  Product::getDescription
- * Description: return the value of the corresponding data
- * member
+ * Description: return the value stored within that Product's
+ * Description Variable.
 **************************************************************/
 std::string Product::getDescription() {
     return description;
@@ -57,8 +58,8 @@ std::string Product::getDescription() {
 
 /**************************************************************
  *                  Product::getPrice
- * Description: return the value of the corresponding data
- * member
+ * Description: return the value stored within tha Product's
+ * Price Variable.
 **************************************************************/
 double Product::getPrice() {
     return price;
@@ -66,8 +67,8 @@ double Product::getPrice() {
 
 /**************************************************************
  *                  Product::getQuantityAvailable
- * Description: return the value of the corresponding data
- * member
+ * Description: return the value stored within that Product's
+ * Quantity Available Variable.
 **************************************************************/
 int Product::getQuantityAvailable() {
     return quantityAvailable;
@@ -75,7 +76,8 @@ int Product::getQuantityAvailable() {
 
 /**************************************************************
  *                  Product::decreaseQuantity
- * Description: decreases the quantity available by one
+ * Description: decreases the quantity available by one within
+ * that Product.
 **************************************************************/
 void Product::decreaseQuantity() {
     quantityAvailable --;
