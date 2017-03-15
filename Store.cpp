@@ -169,21 +169,28 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
     {
        members[memberLocation]->addProductToCart(pID);
     }
-
+    // Check to see if the customer is a member
+    else if (!inMember)
+    {
+        std::cout << "Sorry you are not a member." << std::endl;
+    }
+    // Check to see if the item is actually in inventory
+    else if (!inStore)
+    {
+        std::cout << "Sorry, the item you are looking for is not in our store" << std::endl;
+    }
     // Check to see if they are a member, the item is in store, and that the item is out of stock
-    else if (inMember && inStore && !inStock)
+    else if (!inStock)
     {
         std::cout   << "Sorry, product #" << inventory[itemLocation]->getIdCode()
                     << " is currently out of stock." << std::endl;
     }
-    if (!inMember)
+    // Just a fallback if it misses everything...somehow
+    else
     {
-        std::cout << "Sorry you are not a member." << std::endl;
+        std::cout << "Sorry, an error has occurred, try again." << std::endl;
     }
-    if (!inStore)
-    {
-        std::cout << "Sorry, the item you are looking for is not in our store" << std::endl;
-    }
+
 }
 
 /**************************************************************
@@ -206,17 +213,23 @@ void Store::addProductToMemberCart(std::string pID, std::string mID) {
 void Store::checkOutMember(std::string mID)
 {
     // Variables needed for function functionality
+    // Amount of members
     int memberSize = members.size();
+    // Found the Member
     bool exists = false;
+    // Variable to hold the total cart value
     double totalCost = 0;
+    // Variable to hold the end cost of shipping
     double shipping = 0;
 
+    // Loop through members to see if the inputted member is in it
     for (int i = 0; i < memberSize; i++)
     {
         // If the member in the store matches the current member search mark as true.
         if (members[i]->getAccountID() == mID) {
             exists = true;
 
+            // Pull the size of that current users cart
             double cartSize = members[i]->getCart().size();
 
             // If there are no items in the cart, let the user know
@@ -248,6 +261,7 @@ void Store::checkOutMember(std::string mID)
                                 std::cout << inventory.at(k)->getTitle() << " - "
                                           << inventory.at(k)->getPrice() << std::endl;
 
+                                // Add price to total and decrease quantity
                                 totalCost += inventory.at(k)->getPrice();
                                 inventory.at(k)->decreaseQuantity();
                             }

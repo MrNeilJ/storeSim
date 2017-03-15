@@ -85,7 +85,7 @@ int main() {
                             "Live Goat",
                             "Yes, you read this right. One live goat. Take it, it eats everything",
                             1,
-                            1);
+                            0);
 
     Product oakTable(       "12",
                             "Oak and Glass Coffee Table",
